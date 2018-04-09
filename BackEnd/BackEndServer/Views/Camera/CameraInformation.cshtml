@@ -6,7 +6,18 @@
         <div class="col s10 offset-s1">
             <div class="card camera-card">
             <div class="card-image">
-                <img class="camera-card-image" src="~/images/camera_images/camera_image_@(Model.CameraInformation.CameraId).png">
+                
+                @{
+                    if (Model.CameraInformation.CameraId <= 4)
+                    {
+                        <img class="camera-card-image" src="~/images/camera_images/camera_image_@(Model.CameraInformation.CameraId).png" alt="@Model.CameraInformation.CameraRoomName">
+                    }
+                    else
+                    {
+                        <img class="camera-card-image" src="~/images/camera_images/no_location_picture.png" alt="@Model.CameraInformation.CameraRoomName">
+                    }
+                }
+                
                 <span class="camera-card-title card-title">@Model.CameraInformation.CameraRoomName</span>
             </div>
         </div>
@@ -17,13 +28,13 @@
             @{
                 if (@Model.LastUpdatedTime != null)
                 {
-                    <div class="last-updated-time">
+                    <div class="last-updated-time" id="pageUpdate">
                         Page last updated on: @DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt")
                     </div>
-                    <div class="last-updated-time">
+                    <div class="last-updated-time" id="lastRecorded">
                         Recorded on: @Model.LastUpdatedTime.Value.ToString("yyyy/MM/dd hh:mm:ss tt")
                     </div>
-                    <div class="people-count">
+                    <div class="people-count" id="numPeople">
                         Number of people spotted: @Model.MostRecentPeopleCount
                     </div>
                 }

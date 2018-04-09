@@ -28,7 +28,7 @@ namespace BackEndServer.Services
         // TODO: Remove this constructor and figure out how this service is to be injected into other services
         public DatabaseQueryService()
         {
-            this.ConnectionString = "server=localhost;port=3306;database=mydb;user=root;password=password;SslMode=none";
+            this.ConnectionString = "server=localhost;port=3306;database=mydb;user=root;password=jetson;SslMode=none";
         }
         
         // Method to return a MySQL Database connection.
@@ -154,7 +154,7 @@ namespace BackEndServer.Services
         public bool storeStatsFromMessage(OldDataMessage dataMessage)
         {
             if (dataMessage.RealTimeStats == null || dataMessage.getLength() < 1)
-                return (false);
+                return false;
 
             int initialLength = dataMessage.getLength();
             List<OldPerSecondStat> temp = new List<OldPerSecondStat>();
